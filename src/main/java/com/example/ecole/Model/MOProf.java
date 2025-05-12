@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+import java.util.List;
+
 
 @Builder
 @Getter
@@ -37,13 +39,8 @@ public class MOProf {
     @JoinColumn(name = "id_salle")
     private MOSalle salle;
 
-    @ManyToOne
-    @JoinColumn(name = "id_ClasseProf")
-    private MOClasseProf ClasseProf;
-
-
-
-
+    @OneToMany(mappedBy = "prof")
+    private List<MOClasseProf> ClasseProfs;
 
 
 }

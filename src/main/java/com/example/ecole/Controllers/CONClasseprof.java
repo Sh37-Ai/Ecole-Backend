@@ -4,9 +4,7 @@ import com.example.ecole.Services.*;
 import com.example.ecole.Model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,10 @@ public class CONClasseprof {
     @GetMapping("Classeprof")
     public List<MOClasseProf> findAll() {
         return serClasseprof.findAll();
+    }
+
+    @PostMapping("Classeprof")
+    public MOClasseProf save(@RequestBody MOClasseProf prof) {
+        return serClasseprof.save(prof);
     }
 }

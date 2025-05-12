@@ -30,5 +30,12 @@ public class MOClasseProf {
     @JoinColumn(name = "id_prof")
     private MOProf prof;
 
+    @OneToMany(mappedBy = "classeprof",cascade = CascadeType.ALL)
+    private List<MOReservation> reservations;
+
+
+
+
+
 }
 

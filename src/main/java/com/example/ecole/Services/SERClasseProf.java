@@ -20,5 +20,8 @@ public class SERClasseProf {
     public List<MOClasseProf> findAll() {
         return repClasseprof.findAll();
     }
+    public MOClasseProf save(MOClasseProf prof) {
+        return repClasseprof.save(prof);
+    }
 
 }

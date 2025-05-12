@@ -3,6 +3,7 @@ package com.example.ecole.Model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,13 @@ public class MOSalle {
 
     @OneToMany(mappedBy = "salle")
     private List<MOProf> profs;
+
+    @OneToMany(mappedBy = "salle",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<MOReservation> Reservations;
+
+
+
 
 
 }
