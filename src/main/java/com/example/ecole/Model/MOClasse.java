@@ -34,9 +34,7 @@ public class MOClasse {
     }
 
 
-
-
-
-
-
+    public Integer getId_classe() {
+        return id_classe ;
+    }
 }

@@ -17,10 +17,15 @@ public class CONEleve {
     private SEREleve repEleve;
 
     @GetMapping("/eleves/{id}")
-    public MOEleve findById(@PathVariable Integer id) {
-        return repEleve.getMOEleveById(id);
-
+    public ResponseEntity<MOEleve> findById(@PathVariable Integer id) {
+        MOEleve eleve = repEleve.getMOEleveById(id);
+        if (eleve != null) {
+            return ResponseEntity.ok(eleve);
+        } else {
+            return ResponseEntity.notFound().build(); // HTTP 404
+        }
     }
+
 
     @GetMapping("/eleves")
     public ResponseEntity<List<MOEleve>> findAll() {

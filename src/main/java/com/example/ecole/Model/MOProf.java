@@ -1,5 +1,6 @@
 package com.example.ecole.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import lombok.*;
@@ -40,6 +41,7 @@ public class MOProf {
     private MOSalle salle;
 
     @OneToMany(mappedBy = "prof")
+    @JsonManagedReference
     private List<MOClasseProf> ClasseProfs;
 
 

@@ -1,5 +1,6 @@
 package com.example.ecole.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,14 +28,12 @@ public class MOClasseProf {
     private MOClasse classe;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "id_prof")
     private MOProf prof;
 
     @OneToMany(mappedBy = "classeprof",cascade = CascadeType.ALL)
     private List<MOReservation> reservations;
-
-
-
 
 
 }
