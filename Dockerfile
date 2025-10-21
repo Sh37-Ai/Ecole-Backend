@@ -1,14 +1,12 @@
-# Étape 1 : builder React avec Node
-FROM node:22-bullseye AS build
+# Étape 1 : Build du projet
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
 COPY . .
-RUN npm run build
+RUN mvn clean package -DskipTests
 
-# Étape 2 : serveur Nginx
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Étape 2 : Exécution
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=builder /app/target/*.jar backend.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "backend.jar"]
